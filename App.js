@@ -2,8 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableHighlight, TouchableOpacity, Alert, Linking } from 'react-native';
 import FormData from 'FormData';
 
-const a = require('./img/fritz.jpg');
-const b = require('./img/icon.jpg');
+const a = require('./img/swerve.png');
+const b = require('./img/icon.png');
 
 export default class App extends React.Component
 {
@@ -22,7 +22,7 @@ export default class App extends React.Component
     this.number = 0;
 
     this.view = true;
-    this.view_url = require('./img/icon.jpg');
+    this.view_url = require('./img/icon.png');
 
   }
   
@@ -109,6 +109,8 @@ export default class App extends React.Component
     return (
       <Image
         source={this.view_url}
+        style={{width: 300, height:300, flex:1}}
+        resizeMode="contain"
       />
     );
   }
@@ -139,7 +141,7 @@ function getURL(url){
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black',
+    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
   },
