@@ -51,7 +51,7 @@ export default class App extends React.Component
             source={require('./img/icon.jpg')}
           />
         </TouchableHighlight>
-        <Text>{this.getDate()}</Text>
+        <Text style={{color: 'white'}}>{this.getDate()}</Text>
       </View>
     );
   }
