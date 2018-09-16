@@ -80,7 +80,11 @@ def create_graph(file_name):
     plt.title("Swerve Weekly Report")
     plt.ylabel("Number of swerves")
     plt.xlabel("Day of the week")
+    fig1 = plt.gcf()
+    plt.draw()
+    fig1.savefig('swerve.png', dpi=100)
     plt.show()
+
     
 
     
