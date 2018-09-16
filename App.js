@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, TouchableHighlight, TouchableOpacity, Alert, Linking } from 'react-native';
+import { Constants, Audio } from 'expo';
 import FormData from 'FormData';
 
 const a = require('./img/swerve.png');
@@ -25,7 +26,7 @@ export default class App extends React.Component
     this.view_url = require('./img/icon.png');
 
   }
-  
+
   addOne() {
     this.number = this.number + 1;
     this.timer = setTimeout(this.addOne, 200);
@@ -34,11 +35,10 @@ export default class App extends React.Component
   stopTimer() {
     var number = this.number;
     this.number = 0;
-    clearTimeout(this.timer);
-
+    this.timer = clearTimeout(this.timer);
     if(number >= 3){
       console.log(number);
-      this.view = true;
+      this.view = !(this.view);
       this.stayCount();
     }
     else{
@@ -103,6 +103,20 @@ export default class App extends React.Component
       console.log(errors);
     }
   }
+
+  async play_song(){
+      const source = {
+        uri: "http://www.slspencer.com/Sounds/Chewbacca/Chewie3.mp3"
+      };
+      try {
+        await Audio.setIsEnabledAsync(true);
+        const sound = new Audio.Sound();
+        await sound.loadAsync(source);
+        await sound.playAsync();
+      } catch(error) {
+        console.error(error);
+      }
+    }
 
   display_image(){
     console.log(this.view_url);
