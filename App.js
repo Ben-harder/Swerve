@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableHighlight, Alert } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableHighlight, Alert, Linking } from 'react-native';
 
 export default class App extends React.Component
 {
@@ -8,6 +8,13 @@ export default class App extends React.Component
     super(props);
     this.state = { count: 0 };
     this.date = { date: (new Date()).toString() }
+    this.url_array = ['https://www.youtube.com/watch?v=fKopy74weus', 'https://reactnativecode.com'];
+  }
+
+  random_range(lower_limit, upper_limit)
+  {
+    var number = Math.floor(Math.random() * upper_limit) + lower_limit;
+    return number;
   }
 
   incrementCount()
@@ -27,6 +34,7 @@ export default class App extends React.Component
         <TouchableHighlight onPress={() =>
         {
           this.incrementCount();
+          getURL(this.url_array[this.random_range(0, 2)]);
         }}>
 
           <Image
@@ -37,6 +45,16 @@ export default class App extends React.Component
       </View>
     );
   }
+}
+
+function getURL(url){
+    Linking.canOpenURL(url).then(supported => {
+      if (!supported) {
+          console.log('Failed to open: ' + url);
+      }else {
+          return Linking.openURL(url);
+      }
+    }).catch(err => console.error('Request failed, an error occurred.', err));
 }
 
 const styles = StyleSheet.create({
